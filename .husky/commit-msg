@@ -1,0 +1,25 @@
+# Validação da mensagem do commit
+commit_regex='^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .{1,50}'
+
+if ! grep -qE "$commit_regex" "$1"; then
+  echo "❌ Mensagem de commit inválida!"
+  echo ""
+  echo "📋 Formato esperado:"
+  echo "   tipo(escopo): descrição"
+  echo ""
+  echo "📝 Tipos válidos:"
+  echo "   • feat:     nova funcionalidade"
+  echo "   • fix:      correção de bug"
+  echo "   • docs:     documentação"
+  echo "   • style:    formatação, sem mudança de lógica"
+  echo "   • refactor: refatoração de código"
+  echo "   • test:     adição/modificação de testes"
+  echo "   • chore:    tarefas de manutenção"
+  echo ""
+  echo "✅ Exemplos válidos:"
+  echo "   feat: adicionar tela de gastos"
+  echo "   fix(header): corrigir responsividade"
+  echo "   docs: atualizar README"
+  echo ""
+  exit 1
+fi

@@ -1,0 +1,56 @@
+# Dependências
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+build/
+dist/
+.next/
+out/
+
+# Cache directories
+.cache/
+.parcel-cache/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Public assets (geralmente não precisam de linting)
+public/
+
+# Service worker
+src/serviceWorker.ts
+src/service-worker.ts
+
+# Config files que não precisam de linting
+*.config.js
+*.config.ts

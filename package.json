@@ -25,13 +25,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
+    "lint:check": "eslint src --ext .ts,.tsx,.js,.jsx --max-warnings 0",
+    "pre-commit": "lint-staged",
+    "prepare": "husky"
   },
   "browserslist": {
     "production": [
@@ -48,6 +47,25 @@
   "devDependencies": {
     "@types/bootstrap": "^5.2.7",
     "@types/react-router-bootstrap": "^0.26.4",
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "npx eslint --fix",
+      "npx eslint --max-warnings 0"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,json,css,md}": [
+      "npx prettier --write"
+    ]
   }
 }
