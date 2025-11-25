@@ -18,6 +18,21 @@ const Header: React.FC = () => {
             <span className="nav-text">Test</span>
           </Nav.Link>
         </LinkContainer>
+        <LinkContainer to="/outroTeste" className="flex-fill">
+          <Nav.Link className="text-center custom-nav-link">
+            <span className="nav-text">Test 2</span>
+          </Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/escreva" className="flex-fill">
+          <Nav.Link className="text-center custom-nav-link">
+            <span className="nav-text">Cadastro</span>
+          </Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/configuracoes" className="flex-fill">
+          <Nav.Link className="text-center custom-nav-link">
+            <span className="nav-text">Config</span>
+          </Nav.Link>
+        </LinkContainer>
       </Nav>
     </div>
   );
