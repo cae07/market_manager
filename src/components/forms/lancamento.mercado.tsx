@@ -3,6 +3,7 @@ import { Form, Button, Row, Col, Card, ListGroup } from 'react-bootstrap';
 
 import { useApp } from '../../context';
 import ModalCadastroProduto from '../modal/cadastro.produto';
+import './lancamentoMercado.css';
 
 interface LancamentoMercadoProps {
   onSubmit?: (data: any) => void;
@@ -13,6 +14,8 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
 
   const [formData, setFormData] = useState({
     nome: '',
+    valor: '',
+    quantidade: '',
     medidaId: '',
     tipoProdutoId: '',
   });
@@ -27,14 +30,14 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
       return [];
     }
     return state.produtos.filter(produto =>
-      produto.nome.toLowerCase().includes(formData.nome.toLowerCase()),
+      produto.nome.toLowerCase().includes(formData.nome.toLowerCase())
     );
   }, [formData.nome, state.produtos]);
 
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const { name, value, type } = e.target;
 
@@ -50,10 +53,12 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
   };
 
   const handleSelectSuggestion = (produtoId: string) => {
-    const produto = state.produtos.find(p => p.id === produtoId);
+    const produto = state.produtoLancamentos.find(p => p.id === produtoId);
     if (produto) {
       setFormData({
         nome: produto.nome,
+        valor: produto.valor.toString(),
+        quantidade: produto.quantidade.toString(),
         medidaId: produto.medidaId,
         tipoProdutoId: produto.tipoProdutoId,
       });
@@ -80,6 +85,8 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
       // Limpa o formulário
       setFormData({
         nome: '',
+        quantidade: '',
+        valor: '',
         medidaId: '',
         tipoProdutoId: '',
       });
@@ -100,11 +107,13 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
 
   const handleCadastroSucesso = (produtoId: string) => {
     // Quando um produto é cadastrado, atualiza o formulário com os dados dele
-    const produto = state.produtos.find(p => p.id === produtoId);
+    const produto = state.produtoLancamentos.find(p => p.id === produtoId);
     if (produto) {
       setFormData({
         nome: produto.nome,
         medidaId: produto.medidaId,
+        quantidade: produto.quantidade.toString(),
+        valor: produto.valor.toString(),
         tipoProdutoId: produto.tipoProdutoId,
       });
     }
@@ -112,12 +121,17 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
 
   return (
     <>
-      <Card>
+      <Card className="lancamento-mercado-container">
         <Card.Header>
           <h5 className="mb-0">Lançamento de Mercado</h5>
         </Card.Header>
         <Card.Body>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
             <Row>
               <Col md={12}>
                 <Form.Group className="mb-3 position-relative">
@@ -130,7 +144,7 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
                     onFocus={() =>
                       setShowSuggestions(
                         formData.nome.length >= 2 &&
-                          suggestedProducts.length > 0,
+                          suggestedProducts.length > 0
                       )
                     }
                     onBlur={() => {
@@ -141,6 +155,10 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
                     required
                     minLength={2}
                     disabled={state.isLoading}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck="false"
                   />
                   <Form.Control.Feedback type="invalid">
                     Por favor, informe um nome válido (mín. 2 caracteres).
@@ -149,7 +167,7 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
                   {/* Lista de sugestões */}
                   {showSuggestions && suggestedProducts.length > 0 && (
                     <ListGroup
-                      className="position-absolute w-100"
+                      className="position-absolute w-100 shadow-sm"
                       style={{
                         zIndex: 1000,
                         maxHeight: '200px',
@@ -162,8 +180,21 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
                           action
                           onClick={() => handleSelectSuggestion(produto.id)}
                           style={{ cursor: 'pointer' }}
+                          className="d-flex justify-content-between align-items-center"
                         >
                           <strong>{produto.nome}</strong>
+                          <small className="text-muted">
+                            {
+                              state.medidas.find(m => m.id === produto.medidaId)
+                                ?.sigla
+                            }{' '}
+                            •{' '}
+                            {
+                              state.tiposProduto.find(
+                                t => t.id === produto.tipoProdutoId
+                              )?.nome
+                            }
+                          </small>
                         </ListGroup.Item>
                       ))}
                     </ListGroup>
@@ -179,6 +210,48 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
                     + Cadastrar Novo Produto
                   </Button>
                 </div>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Valor *</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="valor"
+                    value={formData.valor}
+                    onChange={handleInputChange}
+                    placeholder="0.00"
+                    step="0.01"
+                    min="0"
+                    required
+                    disabled={state.isLoading}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Por favor, informe um valor válido.
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </Col>
+
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Quantidade *</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="quantidade"
+                    value={formData.quantidade}
+                    onChange={handleInputChange}
+                    placeholder="0"
+                    step="1"
+                    min="1"
+                    required
+                    disabled={state.isLoading}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Por favor, informe uma quantidade válida.
+                  </Form.Control.Feedback>
+                </Form.Group>
               </Col>
             </Row>
 

@@ -29,7 +29,7 @@ const Escreva: React.FC = () => {
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const { name, value, type } = e.target;
 
@@ -251,23 +251,23 @@ const Escreva: React.FC = () => {
                       <strong>Embalagem:</strong>{' '}
                       {formData.embalagemId
                         ? state.embalagens.find(
-                          e => e.id === formData.embalagemId,
-                        )?.descricao || '-'
+                            e => e.id === formData.embalagemId
+                          )?.descricao || '-'
                         : '-'}
                     </Col>
                     <Col sm={6}>
                       <strong>Medida:</strong>{' '}
                       {formData.medidaId
                         ? state.medidas.find(m => m.id === formData.medidaId)
-                          ?.nome || '-'
+                            ?.nome || '-'
                         : '-'}
                     </Col>
                     <Col sm={6}>
                       <strong>Tipo:</strong>{' '}
                       {formData.tipoProdutoId
                         ? state.tiposProduto.find(
-                          t => t.id === formData.tipoProdutoId,
-                        )?.nome || '-'
+                            t => t.id === formData.tipoProdutoId
+                          )?.nome || '-'
                         : '-'}
                     </Col>
                   </Row>

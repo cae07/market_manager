@@ -81,7 +81,7 @@ const ModalCadastroProduto: React.FC<ModalCadastroProdutoProps> = ({
   const handleCadastroInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    >
   ) => {
     const { name, value, type } = e.target;
 

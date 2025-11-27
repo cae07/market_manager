@@ -36,6 +36,18 @@ export interface Produto {
   dataAtualizacao: Date;
 }
 
+export interface ProdutoLancamento {
+  id: string;
+  nome: string;
+  valor: number;
+  quantidade: number;
+  embalagemId: string;
+  medidaId: string;
+  tipoProdutoId: string;
+  dataCriacao: Date;
+  dataAtualizacao: Date;
+}
+
 export interface FormProduto {
   nome: string;
   embalagemId: string;
@@ -55,6 +67,7 @@ export interface AppState {
   ano: number;
   mes: string;
   produtos: Produto[];
+  produtoLancamentos: ProdutoLancamento[];
   medidas: Medida[];
   tiposProduto: TipoProduto[];
   embalagens: Embalagem[];
@@ -74,6 +87,18 @@ export interface AppContextType {
   updateProduto: (id: string, produto: Partial<Produto>) => void;
   deleteProduto: (id: string) => void;
   getProdutoCompleto: (id: string) => ProdutoCompleto | null;
+  // Produto Lançamentos
+  addProdutoLancamento: (
+    produtoLancamento: Omit<
+      ProdutoLancamento,
+      'id' | 'dataCriacao' | 'dataAtualizacao'
+    >
+  ) => void;
+  updateProdutoLancamento: (
+    id: string,
+    produtoLancamento: Partial<ProdutoLancamento>
+  ) => void;
+  deleteProdutoLancamento: (id: string) => void;
   // Medidas
   addMedida: (medida: Omit<Medida, 'id' | 'dataCriacao'>) => void;
   updateMedida: (id: string, medida: Partial<Medida>) => void;

@@ -1,0 +1,15 @@
+# Ignorar arquivos de build e node_modules
+node_modules
+build
+dist
+coverage
+
+# Ignorar arquivos gerados
+*.log
+.env
+.env.local
+.env.*.local
+
+# Ignorar arquivos de configuração específicos
+package-lock.json
+yarn.lock

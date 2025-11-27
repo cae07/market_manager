@@ -4,6 +4,7 @@ import {
   AppState,
   AppContextType,
   Produto,
+  ProdutoLancamento,
   Medida,
   TipoProduto,
   Embalagem,
@@ -15,6 +16,7 @@ const initialState: AppState = {
   ano: 2025,
   mes: 'Novembro',
   produtos: [],
+  produtoLancamentos: [],
   medidas: [
     {
       id: '1',
@@ -79,6 +81,12 @@ type AppAction =
       payload: { id: string; produto: Partial<Produto> };
     }
   | { type: 'DELETE_PRODUTO'; payload: string }
+  | { type: 'ADD_PRODUTO_LANCAMENTO'; payload: ProdutoLancamento }
+  | {
+      type: 'UPDATE_PRODUTO_LANCAMENTO';
+      payload: { id: string; produtoLancamento: Partial<ProdutoLancamento> };
+    }
+  | { type: 'DELETE_PRODUTO_LANCAMENTO'; payload: string }
   | { type: 'ADD_MEDIDA'; payload: Medida }
   | { type: 'UPDATE_MEDIDA'; payload: { id: string; medida: Partial<Medida> } }
   | { type: 'DELETE_MEDIDA'; payload: string }
@@ -136,7 +144,7 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         produtos: state.produtos.map(p =>
-          p.id === id ? { ...p, ...produto, dataAtualizacao: new Date() } : p,
+          p.id === id ? { ...p, ...produto, dataAtualizacao: new Date() } : p
         ),
         error: null,
       };
@@ -146,6 +154,35 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         produtos: state.produtos.filter(p => p.id !== action.payload),
+        error: null,
+      };
+
+    case 'ADD_PRODUTO_LANCAMENTO':
+      return {
+        ...state,
+        produtoLancamentos: [...state.produtoLancamentos, action.payload],
+        error: null,
+      };
+
+    case 'UPDATE_PRODUTO_LANCAMENTO': {
+      const { id, produtoLancamento } = action.payload;
+      return {
+        ...state,
+        produtoLancamentos: state.produtoLancamentos.map(p =>
+          p.id === id
+            ? { ...p, ...produtoLancamento, dataAtualizacao: new Date() }
+            : p
+        ),
+        error: null,
+      };
+    }
+
+    case 'DELETE_PRODUTO_LANCAMENTO':
+      return {
+        ...state,
+        produtoLancamentos: state.produtoLancamentos.filter(
+          p => p.id !== action.payload
+        ),
         error: null,
       };
 
@@ -161,7 +198,7 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         medidas: state.medidas.map(m =>
-          m.id === id ? { ...m, ...medida } : m,
+          m.id === id ? { ...m, ...medida } : m
         ),
         error: null,
       };
@@ -186,7 +223,7 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         tiposProduto: state.tiposProduto.map(t =>
-          t.id === id ? { ...t, ...tipoProduto } : t,
+          t.id === id ? { ...t, ...tipoProduto } : t
         ),
         error: null,
       };
@@ -211,7 +248,7 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
       return {
         ...state,
         embalagens: state.embalagens.map(e =>
-          e.id === id ? { ...e, ...embalagem } : e,
+          e.id === id ? { ...e, ...embalagem } : e
         ),
         error: null,
       };
@@ -253,7 +290,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   // Actions
   const addProduto = (
-    produtoData: Omit<Produto, 'id' | 'dataCriacao' | 'dataAtualizacao'>,
+    produtoData: Omit<Produto, 'id' | 'dataCriacao' | 'dataAtualizacao'>
   ) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
@@ -294,6 +331,68 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }
   };
 
+  // Funções para Produto Lançamento
+  const addProdutoLancamento = (
+    produtoLancamentoData: Omit<
+      ProdutoLancamento,
+      'id' | 'dataCriacao' | 'dataAtualizacao'
+    >
+  ) => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true });
+
+      const novoProdutoLancamento: ProdutoLancamento = {
+        ...produtoLancamentoData,
+        id: generateId(),
+        dataCriacao: new Date(),
+        dataAtualizacao: new Date(),
+      };
+
+      dispatch({
+        type: 'ADD_PRODUTO_LANCAMENTO',
+        payload: novoProdutoLancamento,
+      });
+      dispatch({ type: 'SET_LOADING', payload: false });
+    } catch (error) {
+      dispatch({
+        type: 'SET_ERROR',
+        payload: 'Erro ao adicionar lançamento de produto',
+      });
+    }
+  };
+
+  const updateProdutoLancamento = (
+    id: string,
+    produtoLancamento: Partial<ProdutoLancamento>
+  ) => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true });
+      dispatch({
+        type: 'UPDATE_PRODUTO_LANCAMENTO',
+        payload: { id, produtoLancamento },
+      });
+      dispatch({ type: 'SET_LOADING', payload: false });
+    } catch (error) {
+      dispatch({
+        type: 'SET_ERROR',
+        payload: 'Erro ao atualizar lançamento de produto',
+      });
+    }
+  };
+
+  const deleteProdutoLancamento = (id: string) => {
+    try {
+      dispatch({ type: 'SET_LOADING', payload: true });
+      dispatch({ type: 'DELETE_PRODUTO_LANCAMENTO', payload: id });
+      dispatch({ type: 'SET_LOADING', payload: false });
+    } catch (error) {
+      dispatch({
+        type: 'SET_ERROR',
+        payload: 'Erro ao remover lançamento de produto',
+      });
+    }
+  };
+
   const clearError = () => {
     dispatch({ type: 'CLEAR_ERROR' });
   };
@@ -316,7 +415,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     const embalagem = state.embalagens.find(e => e.id === produto.embalagemId);
     const medida = state.medidas.find(m => m.id === produto.medidaId);
     const tipoProduto = state.tiposProduto.find(
-      t => t.id === produto.tipoProdutoId,
+      t => t.id === produto.tipoProdutoId
     );
 
     if (!embalagem || !medida || !tipoProduto) {
@@ -371,7 +470,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   // Funções para Tipos de Produto
   const addTipoProduto = (
-    tipoProdutoData: Omit<TipoProduto, 'id' | 'dataCriacao'>,
+    tipoProdutoData: Omit<TipoProduto, 'id' | 'dataCriacao'>
   ) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
@@ -420,7 +519,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   // Funções para Embalagens
   const addEmbalagem = (
-    embalagemData: Omit<Embalagem, 'id' | 'dataCriacao'>,
+    embalagemData: Omit<Embalagem, 'id' | 'dataCriacao'>
   ) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
@@ -466,6 +565,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     updateProduto,
     deleteProduto,
     getProdutoCompleto,
+    addProdutoLancamento,
+    updateProdutoLancamento,
+    deleteProdutoLancamento,
     addMedida,
     updateMedida,
     deleteMedida,

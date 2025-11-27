@@ -5,10 +5,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: [
-    'react-app',
-    'react-app/jest',
-  ],
+  extends: ['react-app', 'react-app/jest', 'plugin:prettier/recommended'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -39,16 +36,13 @@ module.exports = {
     'no-alert': 'warn',
     'prefer-const': 'error',
     'no-var': 'error',
-    'eqeqeq': ['error', 'always'],
-    'curly': ['error', 'all'],
+    eqeqeq: ['error', 'always'],
+    curly: ['error', 'all'],
     'no-multiple-empty-lines': ['error', { max: 1 }],
     'no-trailing-spaces': 'error',
-    'comma-dangle': ['error', 'always-multiline'],
-    'object-curly-spacing': ['error', 'always'],
-    'array-bracket-spacing': ['error', 'never'],
-    'indent': ['error', 2, { SwitchCase: 1 }],
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'always'],
+
+    // Prettier vai gerenciar formatação, desabilitar regras de estilo do ESLint
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
 
     // Importações básicas
     'import/no-duplicates': 'error',
@@ -82,7 +76,7 @@ module.exports = {
     {
       files: ['src/react-app-env.d.ts', 'src/reportWebVitals.ts'],
       rules: {
-        'quotes': 'off',
+        quotes: 'off',
         'import/newline-after-import': 'off',
       },
     },

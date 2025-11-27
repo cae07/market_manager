@@ -42,7 +42,7 @@ const Configuracoes: React.FC = () => {
   const [editingMedida, setEditingMedida] = useState<Medida | null>(null);
   const [editingTipo, setEditingTipo] = useState<TipoProduto | null>(null);
   const [editingEmbalagem, setEditingEmbalagem] = useState<Embalagem | null>(
-    null,
+    null
   );
 
   // Estados para formulários
