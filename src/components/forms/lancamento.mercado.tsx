@@ -131,11 +131,12 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
             validated={validated}
             onSubmit={handleSubmit}
             autoComplete="off"
+            data-testid="lancamento-form"
           >
             <Row>
               <Col md={12}>
-                <Form.Group className="mb-3 position-relative">
-                  <Form.Label>Nome do Produto *</Form.Label>
+                <Form.Group controlId="nome" className="mb-3 position-relative">
+                  <Form.Label>Nome do Produto</Form.Label>
                   <Form.Control
                     type="text"
                     name="nome"
@@ -215,8 +216,8 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
 
             <Row>
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Valor *</Form.Label>
+                <Form.Group controlId="valor" className="mb-3">
+                  <Form.Label>Valor</Form.Label>
                   <Form.Control
                     type="number"
                     name="valor"
@@ -235,8 +236,8 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
               </Col>
 
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Quantidade *</Form.Label>
+                <Form.Group controlId="quantidade" className="mb-3">
+                  <Form.Label>Quantidade</Form.Label>
                   <Form.Control
                     type="number"
                     name="quantidade"
@@ -257,8 +258,8 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
 
             <Row>
               <Col md={4}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Medida *</Form.Label>
+                <Form.Group controlId="medidaId" className="mb-3">
+                  <Form.Label>Medida</Form.Label>
                   <Form.Select
                     name="medidaId"
                     value={formData.medidaId}
@@ -282,8 +283,8 @@ const LancamentoMercado: React.FC<LancamentoMercadoProps> = ({ onSubmit }) => {
               </Col>
 
               <Col md={4}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Tipo de Produto *</Form.Label>
+                <Form.Group controlId="tipoProdutoId" className="mb-3">
+                  <Form.Label>Tipo de Produto</Form.Label>
                   <Form.Select
                     name="tipoProdutoId"
                     value={formData.tipoProdutoId}

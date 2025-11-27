@@ -106,7 +106,7 @@ const ModalCadastroProduto: React.FC<ModalCadastroProdutoProps> = ({
           <Row>
             <Col md={12}>
               <Form.Group className="mb-3">
-                <Form.Label>Nome do Produto *</Form.Label>
+                <Form.Label>Nome do Produto</Form.Label>
                 <Form.Control
                   type="text"
                   name="nome"
@@ -126,7 +126,7 @@ const ModalCadastroProduto: React.FC<ModalCadastroProdutoProps> = ({
           <Row>
             <Col md={4}>
               <Form.Group className="mb-3">
-                <Form.Label>Embalagem *</Form.Label>
+                <Form.Label>Embalagem</Form.Label>
                 <Form.Select
                   name="embalagemId"
                   value={cadastroFormData.embalagemId}
@@ -150,7 +150,7 @@ const ModalCadastroProduto: React.FC<ModalCadastroProdutoProps> = ({
 
             <Col md={4}>
               <Form.Group className="mb-3">
-                <Form.Label>Medida *</Form.Label>
+                <Form.Label>Medida</Form.Label>
                 <Form.Select
                   name="medidaId"
                   value={cadastroFormData.medidaId}
@@ -174,7 +174,7 @@ const ModalCadastroProduto: React.FC<ModalCadastroProdutoProps> = ({
 
             <Col md={4}>
               <Form.Group className="mb-3">
-                <Form.Label>Tipo de Produto *</Form.Label>
+                <Form.Label>Tipo de Produto</Form.Label>
                 <Form.Select
                   name="tipoProdutoId"
                   value={cadastroFormData.tipoProdutoId}

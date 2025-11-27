@@ -35,7 +35,7 @@ const YearButton: React.FC = () => {
           <Form.Group>
             <Row className="align-items-center">
               <Col xs="auto">
-                <Form.Label className="mb-0">Ano *</Form.Label>
+                <Form.Label className="mb-0">Ano</Form.Label>
               </Col>
               <Col>
                 <Form.Select
@@ -57,7 +57,7 @@ const YearButton: React.FC = () => {
           <Form.Group>
             <Row className="align-items-center">
               <Col xs="auto">
-                <Form.Label className="mb-0">Mês *</Form.Label>
+                <Form.Label className="mb-0">Mês</Form.Label>
               </Col>
               <Col>
                 <Form.Select

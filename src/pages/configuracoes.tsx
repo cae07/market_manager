@@ -395,7 +395,7 @@ const Configuracoes: React.FC = () => {
             </Modal.Header>
             <Modal.Body>
               <Form.Group className="mb-3">
-                <Form.Label>Nome *</Form.Label>
+                <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type="text"
                   value={formMedida.nome}
@@ -408,7 +408,7 @@ const Configuracoes: React.FC = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Sigla *</Form.Label>
+                <Form.Label>Sigla</Form.Label>
                 <Form.Control
                   type="text"
                   value={formMedida.sigla}
@@ -453,7 +453,7 @@ const Configuracoes: React.FC = () => {
             </Modal.Header>
             <Modal.Body>
               <Form.Group className="mb-3">
-                <Form.Label>Nome *</Form.Label>
+                <Form.Label>Nome</Form.Label>
                 <Form.Control
                   type="text"
                   value={formTipo.nome}
@@ -508,7 +508,7 @@ const Configuracoes: React.FC = () => {
             </Modal.Header>
             <Modal.Body>
               <Form.Group className="mb-3">
-                <Form.Label>Quantidade *</Form.Label>
+                <Form.Label>Quantidade</Form.Label>
                 <Form.Control
                   type="number"
                   value={formEmbalagem.quantidade}
@@ -524,7 +524,7 @@ const Configuracoes: React.FC = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Descrição *</Form.Label>
+                <Form.Label>Descrição</Form.Label>
                 <Form.Control
                   type="text"
                   value={formEmbalagem.descricao}

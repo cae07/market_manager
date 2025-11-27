@@ -1,0 +1,487 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LancamentoMercado - Snapshot Tests deve corresponder ao snapshot com formulário vazio 1`] = `
+<div>
+  <div
+    class="lancamento-mercado-container card"
+  >
+    <div
+      class="card-header"
+    >
+      <h5
+        class="mb-0"
+      >
+        Lançamento de Mercado
+      </h5>
+    </div>
+    <div
+      class="card-body"
+    >
+      <form
+        autocomplete="off"
+        class=""
+        data-testid="lancamento-form"
+        novalidate=""
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-12"
+          >
+            <div
+              class="mb-3 position-relative"
+            >
+              <label
+                class="form-label"
+                for="nome"
+              >
+                Nome do Produto
+              </label>
+              <input
+                autocapitalize="off"
+                autocomplete="off"
+                autocorrect="off"
+                class="form-control"
+                id="nome"
+                minlength="2"
+                name="nome"
+                placeholder="Digite o nome do produto"
+                required=""
+                spellcheck="false"
+                type="text"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, informe um nome válido (mín. 2 caracteres).
+              </div>
+            </div>
+            <div
+              class="mb-3"
+            >
+              <button
+                class="btn btn-outline-primary btn-sm"
+                type="button"
+              >
+                + Cadastrar Novo Produto
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-6"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="valor"
+              >
+                Valor
+              </label>
+              <input
+                class="form-control"
+                id="valor"
+                min="0"
+                name="valor"
+                placeholder="0.00"
+                required=""
+                step="0.01"
+                type="number"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, informe um valor válido.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-6"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="quantidade"
+              >
+                Quantidade
+              </label>
+              <input
+                class="form-control"
+                id="quantidade"
+                min="1"
+                name="quantidade"
+                placeholder="0"
+                required=""
+                step="1"
+                type="number"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, informe uma quantidade válida.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-4"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="medidaId"
+              >
+                Medida
+              </label>
+              <select
+                class="form-select"
+                id="medidaId"
+                name="medidaId"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  Selecione uma medida
+                </option>
+                <option
+                  value="1"
+                >
+                  Quilogramas
+                   (
+                  kg
+                  )
+                </option>
+                <option
+                  value="2"
+                >
+                  Gramas
+                   (
+                  g
+                  )
+                </option>
+              </select>
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, selecione uma medida.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-4"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="tipoProdutoId"
+              >
+                Tipo de Produto
+              </label>
+              <select
+                class="form-select"
+                id="tipoProdutoId"
+                name="tipoProdutoId"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  Selecione um tipo
+                </option>
+                <option
+                  value="1"
+                >
+                  Alimentos Gerais
+                </option>
+                <option
+                  value="2"
+                >
+                  Açougue
+                </option>
+              </select>
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, selecione um tipo.
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div
+          class="d-flex justify-content-end"
+        >
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Adicionar Lançamento
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`LancamentoMercado - Snapshot Tests deve corresponder ao snapshot com prop onSubmit 1`] = `
+<div>
+  <div
+    class="lancamento-mercado-container card"
+  >
+    <div
+      class="card-header"
+    >
+      <h5
+        class="mb-0"
+      >
+        Lançamento de Mercado
+      </h5>
+    </div>
+    <div
+      class="card-body"
+    >
+      <form
+        autocomplete="off"
+        class=""
+        data-testid="lancamento-form"
+        novalidate=""
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-12"
+          >
+            <div
+              class="mb-3 position-relative"
+            >
+              <label
+                class="form-label"
+                for="nome"
+              >
+                Nome do Produto
+              </label>
+              <input
+                autocapitalize="off"
+                autocomplete="off"
+                autocorrect="off"
+                class="form-control"
+                id="nome"
+                minlength="2"
+                name="nome"
+                placeholder="Digite o nome do produto"
+                required=""
+                spellcheck="false"
+                type="text"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, informe um nome válido (mín. 2 caracteres).
+              </div>
+            </div>
+            <div
+              class="mb-3"
+            >
+              <button
+                class="btn btn-outline-primary btn-sm"
+                type="button"
+              >
+                + Cadastrar Novo Produto
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-6"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="valor"
+              >
+                Valor
+              </label>
+              <input
+                class="form-control"
+                id="valor"
+                min="0"
+                name="valor"
+                placeholder="0.00"
+                required=""
+                step="0.01"
+                type="number"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, informe um valor válido.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-6"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="quantidade"
+              >
+                Quantidade
+              </label>
+              <input
+                class="form-control"
+                id="quantidade"
+                min="1"
+                name="quantidade"
+                placeholder="0"
+                required=""
+                step="1"
+                type="number"
+                value=""
+              />
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, informe uma quantidade válida.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col-md-4"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="medidaId"
+              >
+                Medida
+              </label>
+              <select
+                class="form-select"
+                id="medidaId"
+                name="medidaId"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  Selecione uma medida
+                </option>
+                <option
+                  value="1"
+                >
+                  Quilogramas
+                   (
+                  kg
+                  )
+                </option>
+                <option
+                  value="2"
+                >
+                  Gramas
+                   (
+                  g
+                  )
+                </option>
+              </select>
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, selecione uma medida.
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-4"
+          >
+            <div
+              class="mb-3"
+            >
+              <label
+                class="form-label"
+                for="tipoProdutoId"
+              >
+                Tipo de Produto
+              </label>
+              <select
+                class="form-select"
+                id="tipoProdutoId"
+                name="tipoProdutoId"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  Selecione um tipo
+                </option>
+                <option
+                  value="1"
+                >
+                  Alimentos Gerais
+                </option>
+                <option
+                  value="2"
+                >
+                  Açougue
+                </option>
+              </select>
+              <div
+                class="invalid-feedback"
+              >
+                Por favor, selecione um tipo.
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div
+          class="d-flex justify-content-end"
+        >
+          <button
+            class="btn btn-primary"
+            type="submit"
+          >
+            Adicionar Lançamento
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
