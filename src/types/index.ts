@@ -29,8 +29,6 @@ export interface Embalagem {
 export interface Produto {
   id: string;
   nome: string;
-  valor: number;
-  quantidade: number;
   embalagemId: string;
   medidaId: string;
   tipoProdutoId: string;
@@ -40,8 +38,6 @@ export interface Produto {
 
 export interface FormProduto {
   nome: string;
-  valor: number | '';
-  quantidade: number | '';
   embalagemId: string;
   medidaId: string;
   tipoProdutoId: string;
@@ -56,6 +52,8 @@ export interface ProdutoCompleto extends Produto {
 
 // Estado global da aplicação
 export interface AppState {
+  ano: number;
+  mes: string;
   produtos: Produto[];
   medidas: Medida[];
   tiposProduto: TipoProduto[];
@@ -66,6 +64,9 @@ export interface AppState {
 
 export interface AppContextType {
   state: AppState;
+  // Ano e Mês
+  setAno: (ano: number) => void;
+  setMes: (mes: string) => void;
   // Produtos
   addProduto: (
     produto: Omit<Produto, 'id' | 'dataCriacao' | 'dataAtualizacao'>

@@ -18,8 +18,6 @@ const Escreva: React.FC = () => {
 
   const [formData, setFormData] = useState<FormProduto>({
     nome: '',
-    valor: '',
-    quantidade: '',
     embalagemId: '',
     medidaId: '',
     tipoProdutoId: '',
@@ -44,8 +42,6 @@ const Escreva: React.FC = () => {
   const resetForm = () => {
     setFormData({
       nome: '',
-      valor: '',
-      quantidade: '',
       embalagemId: '',
       medidaId: '',
       tipoProdutoId: '',
@@ -60,8 +56,6 @@ const Escreva: React.FC = () => {
 
     if (
       form.checkValidity() &&
-      formData.valor !== '' &&
-      formData.quantidade !== '' &&
       formData.embalagemId &&
       formData.medidaId &&
       formData.tipoProdutoId
@@ -69,8 +63,6 @@ const Escreva: React.FC = () => {
       // Converte os dados do formulário para o formato do Produto
       const produtoData = {
         nome: formData.nome,
-        valor: Number(formData.valor),
-        quantidade: Number(formData.quantidade),
         embalagemId: formData.embalagemId,
         medidaId: formData.medidaId,
         tipoProdutoId: formData.tipoProdutoId,
@@ -143,47 +135,6 @@ const Escreva: React.FC = () => {
                         />
                         <Form.Control.Feedback type="invalid">
                           Por favor, informe um nome válido (mín. 2 caracteres).
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col md={6}>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Valor (R$) *</Form.Label>
-                        <Form.Control
-                          type="number"
-                          name="valor"
-                          value={formData.valor}
-                          onChange={handleInputChange}
-                          placeholder="0,00"
-                          step="0.01"
-                          min="0"
-                          required
-                          disabled={state.isLoading}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          Por favor, informe um valor válido.
-                        </Form.Control.Feedback>
-                      </Form.Group>
-                    </Col>
-
-                    <Col md={6}>
-                      <Form.Group className="mb-3">
-                        <Form.Label>Quantidade *</Form.Label>
-                        <Form.Control
-                          type="number"
-                          name="quantidade"
-                          value={formData.quantidade}
-                          onChange={handleInputChange}
-                          placeholder="0"
-                          min="1"
-                          required
-                          disabled={state.isLoading}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                          Por favor, informe uma quantidade válida.
                         </Form.Control.Feedback>
                       </Form.Group>
                     </Col>
@@ -284,7 +235,7 @@ const Escreva: React.FC = () => {
         </Row>
 
         {/* Preview dos dados */}
-        {(formData.nome || formData.valor || formData.quantidade) && (
+        {formData.nome && (
           <Row className="justify-content-center mt-4">
             <Col lg={8} xl={6}>
               <Card className="bg-light">
@@ -295,12 +246,6 @@ const Escreva: React.FC = () => {
                   <Row>
                     <Col sm={6}>
                       <strong>Nome:</strong> {formData.nome || '-'}
-                    </Col>
-                    <Col sm={6}>
-                      <strong>Valor:</strong> R$ {formData.valor || '0,00'}
-                    </Col>
-                    <Col sm={6}>
-                      <strong>Quantidade:</strong> {formData.quantidade || 0}
                     </Col>
                     <Col sm={6}>
                       <strong>Embalagem:</strong>{' '}
@@ -356,8 +301,6 @@ const Escreva: React.FC = () => {
                             <strong>{produto.nome}</strong>
                             <br />
                             <small className="text-muted">
-                              R$ {produto.valor.toFixed(2)} •{' '}
-                              {produto.quantidade}{' '}
                               {produtoCompleto.medida.sigla} •{' '}
                               {produtoCompleto.embalagem.descricao} •{' '}
                               {produtoCompleto.tipoProduto.nome}

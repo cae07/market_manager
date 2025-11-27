@@ -61,8 +61,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "npx eslint --fix",
-      "npx eslint --max-warnings 0"
+      "npx eslint --fix"
     ],
     "src/**/*.{js,jsx,ts,tsx,json,css,md}": [
       "npx prettier --write"

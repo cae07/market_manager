@@ -12,6 +12,8 @@ import {
 
 // Estado inicial com dados padrão
 const initialState: AppState = {
+  ano: 2025,
+  mes: 'Novembro',
   produtos: [],
   medidas: [
     {
@@ -69,6 +71,8 @@ const initialState: AppState = {
 type AppAction =
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ERROR'; payload: string | null }
+  | { type: 'SET_ANO'; payload: number }
+  | { type: 'SET_MES'; payload: string }
   | { type: 'ADD_PRODUTO'; payload: Produto }
   | {
       type: 'UPDATE_PRODUTO';
@@ -106,6 +110,18 @@ const appReducer = (state: AppState, action: AppAction): AppState => {
         ...state,
         error: action.payload,
         isLoading: false,
+      };
+
+    case 'SET_ANO':
+      return {
+        ...state,
+        ano: action.payload,
+      };
+
+    case 'SET_MES':
+      return {
+        ...state,
+        mes: action.payload,
       };
 
     case 'ADD_PRODUTO':
@@ -282,6 +298,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     dispatch({ type: 'CLEAR_ERROR' });
   };
 
+  const setAno = (ano: number) => {
+    dispatch({ type: 'SET_ANO', payload: ano });
+  };
+
+  const setMes = (mes: string) => {
+    dispatch({ type: 'SET_MES', payload: mes });
+  };
+
   // Função para obter produto completo com relacionamentos
   const getProdutoCompleto = (id: string): ProdutoCompleto | null => {
     const produto = state.produtos.find(p => p.id === id);
@@ -436,6 +460,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   const contextValue: AppContextType = {
     state,
+    setAno,
+    setMes,
     addProduto,
     updateProduto,
     deleteProduto,

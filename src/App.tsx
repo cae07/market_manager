@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppProvider } from './context';
 import {
   HomePage,
-  TestPage,
+  LancamentoMercadoPage,
   OutroTestePage,
   EscrevaPage,
   ConfiguracoesPage,
@@ -17,7 +17,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/lancamento" element={<LancamentoMercadoPage />} />
           <Route path="/outroTeste" element={<OutroTestePage />} />
           <Route path="/escreva" element={<EscrevaPage />} />
           <Route path="/configuracoes" element={<ConfiguracoesPage />} />

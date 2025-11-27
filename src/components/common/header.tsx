@@ -13,9 +13,9 @@ const Header: React.FC = () => {
             <span className="nav-text">Home</span>
           </Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/test" className="flex-fill">
+        <LinkContainer to="/lancamento" className="flex-fill">
           <Nav.Link className="text-center custom-nav-link">
-            <span className="nav-text">Test</span>
+            <span className="nav-text">Lançamento Mercado</span>
           </Nav.Link>
         </LinkContainer>
         <LinkContainer to="/outroTeste" className="flex-fill">
